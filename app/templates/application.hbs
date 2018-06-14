@@ -1,5 +1,3 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
-
+{{head-layout}}
+{{header-bar createNewCar=(action 'toRoute' 'car.new') goToList=(action 'toRoute' 'car.list') pageTitle='Wheely'}}
 {{outlet}}

@@ -1,0 +1,11 @@
+{{#paper-item class="md-2-line"}}
+  <div class="md-list-item-text">
+    <h3>{{car.number}}</h3>
+    <p>{{car.class.name}}</p>
+  </div>
+  <div class="md-secondary-container">
+    {{#paper-button secondary=true iconButton=true onClick=(action "deleteCar")}}
+      {{paper-icon "delete"}}
+    {{/paper-button}}
+  </div>
+{{/paper-item}}

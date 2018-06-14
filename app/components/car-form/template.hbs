@@ -1,0 +1,70 @@
+<div class="layout-column layout-align-center car-form">
+  {{#paper-form onSubmit=(action "onSubmit") as |form|}}
+    <div class="layout-row layout-align-space-around car-form__row">
+      <div class="layout-column flex">
+        {{paper-input label="Номер" value=car.number onChange=(action (mut car.number)) required=true customValidations=numberValidation}}
+      </div>
+      <div class="layout-column flex">
+        {{form.input label="Год" value=car.year onChange=(action (mut car.year)) classid=car.class.id customValidations=yearValidation required=true}}
+      </div>
+    </div>
+    <div class="layout-row layout-align-space-around car-form__row">
+      <div class="layout-column flex">
+        {{#form.autocomplete
+              required=true
+              options=manufacturers
+              selected=car.manufacturer
+              searchField="name"
+              labelPath="name"
+              label="Производитель"
+              loadingMessage="Ищем производителя..."
+              noMatchesMessage="К сожалению нам не удалось найти производителя по вашему запросу."
+              onSelectionChange=(action (mut car.manufacturer)) as |manufacturer select|}}
+              {{paper-autocomplete-highlight
+                label=manufacturer.name
+                searchText=select.searchText
+                flags="i"}}
+          {{/form.autocomplete}}
+      </div>
+      <div class="layout-column flex">
+        {{#form.autocomplete
+              required=true
+              options=colors
+              selected=car.color
+              searchField="name"
+              labelPath="name"
+              label="Цвет"
+              loadingMessage="Ищем цвета..."
+              noMatchesMessage="К сожалению нам не удалось найти такой цвет."
+              onSelectionChange=(action (mut car.color)) as |color select|}}
+              {{paper-autocomplete-highlight
+                label=color.name
+                searchText=select.searchText
+                flags="i"}}
+          {{/form.autocomplete}}
+      </div>
+    </div>
+    <div class="layout-row layout-align-space-around car-form__row">
+      <div class="layout-column flex">
+        {{#form.autocomplete
+              required=true
+              options=classes
+              selected=car.class
+              searchField="name"
+              labelPath="name"
+              label="Класс"
+              loadingMessage="Ищем классы машин..."
+              noMatchesMessage="К сожалению нам не удалось найти такой класс машины."
+              onSelectionChange=(action (mut car.class)) as |class select|}}
+              {{paper-autocomplete-highlight
+                label=class.name
+                searchText=select.searchText
+                flags="i"}}
+          {{/form.autocomplete}}
+      </div>
+      <div class="layout-column flex">
+        {{#form.submit-button raised=true primary=true}}Отправить{{/form.submit-button}}
+      </div>
+    </div>
+  {{/paper-form}}
+</div>

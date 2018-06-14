@@ -1,0 +1,8 @@
+<div class="layout-row">
+  <div class="layout-column flex">
+    {{#each model as |car|}}
+      {{car-list-item car=car onClick=(action 'showCar') deleteCar=(action 'deleteCar')}}
+      {{paper-divider}}
+    {{/each}}
+  </div>
+</div>

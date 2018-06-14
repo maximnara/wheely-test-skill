@@ -1,0 +1,14 @@
+{{#paper-toolbar}}
+  {{#paper-toolbar-tools}}
+    {{#if isBackButtonActive}}
+      {{#paper-button iconButton=true onClick=(action 'goToList')}}
+        {{paper-icon "keyboard_arrow_left"}}
+      {{/paper-button}}
+    {{/if}}
+    {{#paper-button iconButton=true onClick=(action 'createNewCar') disabled=isCreateNewCarButtonDisabled}}
+      {{paper-icon "add"}}
+    {{/paper-button}}
+    <h2>{{pageTitle}}</h2>
+    <span class="flex"></span>
+  {{/paper-toolbar-tools}}
+{{/paper-toolbar}}

@@ -1,0 +1,9 @@
+.car-form {
+  margin: 15px;
+
+  &__row {
+    & > :first-child {
+      padding-right: 25px;
+    }
+  }
+}
