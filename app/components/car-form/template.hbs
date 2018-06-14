@@ -5,7 +5,7 @@
         {{paper-input label="Номер" value=car.number onChange=(action (mut car.number)) required=true customValidations=numberValidation}}
       </div>
       <div class="layout-column flex">
-        {{form.input label="Год" value=car.year onChange=(action (mut car.year)) classid=car.class.id customValidations=yearValidation required=true}}
+        {{form.input label="Год" value=car.year onChange=(action (mut car.year)) classminyear=classMinYear customValidations=yearValidation required=true}}
       </div>
     </div>
     <div class="layout-row layout-align-space-around car-form__row">

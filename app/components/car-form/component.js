@@ -2,8 +2,17 @@ import { isNone, typeOf } from '@ember/utils';
 import Ember from 'ember';
 import _ from 'lodash';
 const E_CLASS_ID = 1;
+const S_CLASS_ID = 2;
 
 export default Ember.Component.extend({
+  /*
+   * This map i would like change to config on db,
+   * but have no idea how much such preferences total will be.
+   */
+  classYearMap: {
+    [E_CLASS_ID]: 2012,
+    [S_CLASS_ID]: 2015,
+  },
   numberValidation: [
     {
       message: 'Гос. номер введен неправильно',
@@ -15,10 +24,12 @@ export default Ember.Component.extend({
   ],
   yearValidation: [
     {
-      param: 'classid',
-      message: 'Год выпуска не может быть ниже 2012',
-      validate: (year, classid) => {
-        return isNone(year) || isNone(classid) || parseInt(classid, 10) != E_CLASS_ID || parseInt(year, 10) >= 2012;
+      param: 'classminyear',
+      message: `Год выпуска не может быть ниже %@`,
+      validate: function (year, classminyear) {
+        const classMinYear = parseInt(classminyear, 10);
+        const parsedYear = parseInt(year, 10);
+        return isNone(year) || isNone(classminyear) || parsedYear >= classMinYear;
       }
     },
     {
@@ -29,6 +40,9 @@ export default Ember.Component.extend({
       }
     }
   ],
+  classMinYear: Ember.computed('car.class.id', function () {
+    return this.get('classYearMap')[this.get('car.class.id')];
+  }),
   actions: {
     onSubmit() {
       this.sendAction('onSubmit');
